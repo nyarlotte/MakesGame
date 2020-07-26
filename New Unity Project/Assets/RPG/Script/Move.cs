@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Move : MonoBehaviour
 {
     Rigidbody _rb;
+    SaveData _saveData;
+
     void Start()
     {
         _rb = this.GetComponent<Rigidbody>();
     }
-    // Update is called once per frame
+
     void Update()
     {
         MoveAction();
+        Menu();
     }
 
     void MoveAction()
@@ -60,6 +64,19 @@ public class Move : MonoBehaviour
         if (_col.gameObject.tag == "Ground" && Input.GetKey(KeyCode.Space))
         {
             this._rb.AddForce(transform.up * 130);
+        }
+    }
+    bool _menu;
+    void Menu()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape)&&(_menu == true))
+        {
+            SceneManager.UnloadSceneAsync("Menu");
+            _menu = false;
+        }else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+            _menu = true;
         }
     }
 }
