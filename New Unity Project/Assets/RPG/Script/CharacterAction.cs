@@ -42,48 +42,60 @@ public class CharacterAction : MonoBehaviour
 
     void MoveAction()
     {
+        int _limit = 5; //速度
+        int _acceleration = 20;　//加速度
+
+        if (Input.GetKey(KeyCode.LeftShift)) //シフトキーを押している間速度と加速度を増加
+        {
+             _limit = 10;     
+             _acceleration = 40;　
+        }
+
         if (Input.GetKey(KeyCode.W))
         {
             this._rb.AddForce(transform.forward * 0);
-            if (_rb.velocity.z < 10)
+            if (_rb.velocity.z < _limit)//limit速度まで加速させる
             {
-                this._rb.AddForce(transform.forward * 20);
+                this._rb.AddForce(transform.forward * _acceleration);
+                Debug.Log(_rb.velocity.z);
             }
         }
         if (Input.GetKey(KeyCode.S))
         {
             this._rb.AddForce(transform.forward * 0);
-            if (_rb.velocity.z > -10)
+            if (_rb.velocity.z > -_limit)
             {
-                this._rb.AddForce(transform.forward * -20);
+                this._rb.AddForce(transform.forward * -_acceleration);
             }
         }
         if (Input.GetKey(KeyCode.D))
         {
             this._rb.AddForce(transform.right * 0);
-            if (_rb.velocity.x < 10)
+            if (_rb.velocity.x < _limit)
             {
-                this._rb.AddForce(transform.right * 20);
+                this._rb.AddForce(transform.right * _acceleration);
             }
         }
         if (Input.GetKey(KeyCode.A))
         {
             this._rb.AddForce(transform.right * 0);
-            if (_rb.velocity.x > -10)
+            if (_rb.velocity.x > -_limit)
             {
-                this._rb.AddForce(transform.right * -20);
+                this._rb.AddForce(transform.right * -_acceleration);
             }
         }
     }
 
     void OnCollisionStay(Collision _col) // 当たっているものを検知
     {
+        int _jump = 130 ;//ジャンプ高度
+
         if (_col.gameObject.tag == "Ground" && Input.GetKey(KeyCode.Space))　//Ground に触れている際にジャンプ
         {
-            this._rb.AddForce(transform.up * 130);
+            this._rb.AddForce(transform.up * _jump);
         }
 
-        if (_col.gameObject.tag == "Obstacle")　//障害物にあたったらデリート
+        if (_col.gameObject.tag == "Obstacle")　//障害物にあたったらデリート 障害物クラスを作ったらそこに移動　
         {
             Destroy(gameObject);
         }
