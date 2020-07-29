@@ -565,7 +565,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1182059051
 MeshRenderer:
@@ -744,9 +744,10 @@ GameObject:
   - component: {fileID: 1960798515}
   - component: {fileID: 1960798514}
   - component: {fileID: 1960798516}
+  - component: {fileID: 1960798517}
   m_Layer: 0
   m_Name: GameManagement
-  m_TagString: Untagged
+  m_TagString: GM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -789,6 +790,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649afeac044a04d42a816350751cd47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1960798517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960798513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dbb6f16b4a15a4d87bb73ef054c410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemList:
+  - {fileID: 11400000, guid: c34810cd4fa06ff458859df279227f47, type: 2}
+  - {fileID: 11400000, guid: 43050ca863886cb4f9043ff24052b544, type: 2}
+  - {fileID: 11400000, guid: c275621a635886b49a927d923b62bfbb, type: 2}
 --- !u!1 &2025999575
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,3 +902,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2058138286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 317555746111625276, guid: 2f94dd7964c4807429e09234c191b90c,
+    type: 3}
+  m_PrefabInstance: {fileID: 611201239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2058138287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058138286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb3b49d7109e6f479832faede2723aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _level: 0
+  _stock: []

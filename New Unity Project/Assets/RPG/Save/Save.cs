@@ -20,6 +20,7 @@ public class Save : MonoBehaviour
         Player = GameObject.FindWithTag("Player");
         _saveData._pos = Player.GetComponent<Transform>().position;
         _saveData._sceneName = SceneManager.GetActiveScene().name;
+        _saveData._stock = Player.GetComponent<Character>()._stock;
         _save.Save(_saveData);
     }
 

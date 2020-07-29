@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class CharacterAction : MonoBehaviour
 {
+
     Rigidbody _rb;
+
 
     public enum State // キャラクターの状態を切り替える　
     {
@@ -16,28 +18,31 @@ public class CharacterAction : MonoBehaviour
     }
     public State _state;
 
+    void Awake()
+    {
+        _rb = this.GetComponent<Rigidbody>();
+    }
+
     void Start()
     {
-        _rb =this.GetComponent<Rigidbody>();
 
     }
 
     void Update() 
     {
         EscAction();
-        switch (_state)
+        switch (_state) 
         {
             case State.Move:
                 MoveAction();
                 break;
             case State.Menu:
-
+                //該当命令ナシ
                 break;
             case State.Talk:
-
+                //該当命令ナシ
                 break;
         }
-
     }
 
     void MoveAction()
@@ -53,7 +58,7 @@ public class CharacterAction : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            this._rb.AddForce(transform.forward * 0);
+            this._rb.AddForce(transform.forward * 0);//加速値0
             if (_rb.velocity.z < _limit)//limit速度まで加速させる
             {
                 this._rb.AddForce(transform.forward * _acceleration);
@@ -90,12 +95,11 @@ public class CharacterAction : MonoBehaviour
     {
         int _jump = 130 ;//ジャンプ高度
 
-        if (_col.gameObject.tag == "Ground" && Input.GetKey(KeyCode.Space))　//Ground に触れている際にジャンプ
+        if (_col.gameObject.tag == "Ground" && Input.GetKey(KeyCode.Space))　// Ground に触れている際にジャンプ
         {
             this._rb.AddForce(transform.up * _jump);
         }
-
-        if (_col.gameObject.tag == "Obstacle")　//障害物にあたったらデリート 障害物クラスを作ったらそこに移動　
+        if (_col.gameObject.tag == "Obstacle")　// 障害物にあたったらデリート 障害物クラスを作ったらそこに移動　
         {
             Destroy(gameObject);
         }
