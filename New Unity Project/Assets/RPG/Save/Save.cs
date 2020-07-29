@@ -10,7 +10,7 @@ public class Save : MonoBehaviour
 
     public void Click()
     {
-        /*記録させたい情報を適宜追加
+        /* 記録させたい情報を適宜追加
          * レベル　持ち物　自分の場所等
          * 
          * 
@@ -19,6 +19,7 @@ public class Save : MonoBehaviour
         SaveData _saveData = new SaveData();
         Player = GameObject.FindWithTag("Player");
         _saveData._pos = Player.GetComponent<Transform>().position;
+        _saveData._sceneName = SceneManager.GetActiveScene().name;
         _save.Save(_saveData);
     }
 
@@ -27,6 +28,7 @@ public class Save : MonoBehaviour
         _save = GetComponent<SaveManagement>();
         SaveData _saveData = new SaveData();
         _saveData = _save.Load();
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(_saveData._sceneName);
+        
     }
 }
