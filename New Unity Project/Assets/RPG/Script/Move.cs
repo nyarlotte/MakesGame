@@ -1,22 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Move : MonoBehaviour
 {
+
     Rigidbody _rb;
     SaveData _saveData;
 
-    void Start()
+    public State _state;
+    public enum State // キャラクターの状態を切り替える　
     {
-        _rb = this.GetComponent<Rigidbody>();
+        Move = 0, //default
+        Menu,
+        Talk
     }
 
-    void Update()
+    void Start()
     {
-        MoveAction();
-        Menu();
+        _rb =this.GetComponent<Rigidbody>(); // 
+
+    }
+
+    void Update() 
+    {
+        EscAction();
+        switch (_state)
+        {
+            case State.Move:
+                MoveAction();
+                break;
+            case State.Menu:
+
+                break;
+            case State.Talk:
+
+                break;
+        }
+
     }
 
     void MoveAction()
@@ -26,7 +49,6 @@ public class Move : MonoBehaviour
             this._rb.AddForce(transform.forward * 0);
             if (_rb.velocity.z < 10)
             {
-                Debug.Log(_rb.velocity.z);
                 this._rb.AddForce(transform.forward * 20);
             }
         }
@@ -35,7 +57,6 @@ public class Move : MonoBehaviour
             this._rb.AddForce(transform.forward * 0);
             if (_rb.velocity.z > -10)
             {
-                Debug.Log(_rb.velocity.z);
                 this._rb.AddForce(transform.forward * -20);
             }
         }
@@ -44,7 +65,6 @@ public class Move : MonoBehaviour
             this._rb.AddForce(transform.right * 0);
             if (_rb.velocity.x < 10)
             {
-                Debug.Log(_rb.velocity.x);
                 this._rb.AddForce(transform.right * 20);
             }
         }
@@ -53,30 +73,38 @@ public class Move : MonoBehaviour
             this._rb.AddForce(transform.right * 0);
             if (_rb.velocity.x > -10)
             {
-                Debug.Log(_rb.velocity.x);
                 this._rb.AddForce(transform.right * -20);
             }
         }
     }
 
-    void OnCollisionStay(Collision _col)
+    void OnCollisionStay(Collision _col) // 当たっているものを検知
     {
-        if (_col.gameObject.tag == "Ground" && Input.GetKey(KeyCode.Space))
+        if (_col.gameObject.tag == "Ground" && Input.GetKey(KeyCode.Space))　//Ground に触れている際にジャンプ
         {
             this._rb.AddForce(transform.up * 130);
         }
+
+        if (_col.gameObject.tag == "Obstacle")　//障害物にあたったらデリート
+        {
+            Destroy(gameObject);
+        }
     }
-    bool _menu;
-    void Menu()
+
+    void EscAction()　//元menu()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)&&(_menu == true))
+        if(Input.GetKeyDown(KeyCode.Escape)&&(_state == State.Menu))
         {
             SceneManager.UnloadSceneAsync("Menu");
-            _menu = false;
-        }else if(Input.GetKeyDown(KeyCode.Escape))
+            _state = State.Move;
+        }else if(Input.GetKeyDown(KeyCode.Escape)&&(_state == State.Move))
         {
             SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
-            _menu = true;
+            _state = State.Menu;
+        }else　if(Input.GetKeyDown(KeyCode.Escape)&&(_state == State.Talk))
+        {
+            SceneManager.UnloadSceneAsync("Talk");
+            _state = State.Move;
         }
     }
 }
