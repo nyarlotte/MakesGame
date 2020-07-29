@@ -68,6 +68,8 @@
     <Compile Include="Assets\RPG\Save\SaveManagement.cs" />
     <Compile Include="Assets\RPG\Script\GameManagement.cs" />
     <Compile Include="Assets\RPG\Script\Move.cs" />
+    <Compile Include="Assets\RPG\Script\Talk\TalkManagement.cs" />
+    <Compile Include="Assets\RPG\Script\Talk\Villager.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
