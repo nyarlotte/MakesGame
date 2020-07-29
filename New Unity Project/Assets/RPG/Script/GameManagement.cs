@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class GameManagement : MonoBehaviour
 {
-    void Awake()
+    void Event()
     {
 
     }
-    void Start()
-    {
-    
-    }
-    
+
+
 }
