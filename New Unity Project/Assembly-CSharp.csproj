@@ -66,8 +66,8 @@
     <Compile Include="Assets\RPG\Save\Save.cs" />
     <Compile Include="Assets\RPG\Save\SaveData.cs" />
     <Compile Include="Assets\RPG\Save\SaveManagement.cs" />
+    <Compile Include="Assets\RPG\Script\CharacterAction.cs" />
     <Compile Include="Assets\RPG\Script\GameManagement.cs" />
-    <Compile Include="Assets\RPG\Script\Move.cs" />
     <Compile Include="Assets\RPG\Script\Talk\TalkManagement.cs" />
     <Compile Include="Assets\RPG\Script\Talk\Villager.cs" />
     <Reference Include="UnityEngine">

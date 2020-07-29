@@ -4,23 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Move : MonoBehaviour
+public class CharacterAction : MonoBehaviour
 {
-
     Rigidbody _rb;
-    SaveData _saveData;
 
-    public State _state;
     public enum State // キャラクターの状態を切り替える　
     {
         Move = 0, //default
         Menu,
         Talk
     }
+    public State _state;
 
     void Start()
     {
-        _rb =this.GetComponent<Rigidbody>(); // 
+        _rb =this.GetComponent<Rigidbody>();
 
     }
 
