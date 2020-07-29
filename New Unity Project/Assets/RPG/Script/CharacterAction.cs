@@ -89,6 +89,7 @@ public class CharacterAction : MonoBehaviour
         }
     }
 
+    public int _type; // 0 人　　1　アイテム
     void EscAction()　//元menu()
     {
         if(Input.GetKeyDown(KeyCode.Escape)&&(_state == State.Menu))
@@ -101,8 +102,16 @@ public class CharacterAction : MonoBehaviour
             _state = State.Menu;
         }else　if(Input.GetKeyDown(KeyCode.Escape)&&(_state == State.Talk))
         {
-            SceneManager.UnloadSceneAsync("Talk");
-            _state = State.Move;
+            switch (_type)
+            {
+                case 0:
+                    SceneManager.UnloadSceneAsync("Talk");
+                    _state = State.Move;
+                    break;
+                case 1:
+                    _state = State.Move;
+                    break;
+            }
         }
     }
 }

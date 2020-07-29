@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Villager : MonoBehaviour
 {
 
@@ -16,6 +17,7 @@ public class Villager : MonoBehaviour
 
             if (_action._state == CharacterAction.State.Move) //SteatがMoveの場合のみ話せるように
             {
+                _action._type = 0;
                 _action._state = CharacterAction.State.Talk;
                 SceneManager.LoadScene("Talk", LoadSceneMode.Additive);
                 Debug.Log("はなしかけているよ");
@@ -23,3 +25,5 @@ public class Villager : MonoBehaviour
         }
     }
 }
+
+
